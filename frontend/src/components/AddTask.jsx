@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   FormControl,
   FormGroup,
@@ -9,6 +10,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
+import { addTask } from '../services/api'
 
 const Container = styled(FormGroup)`
   width: 50%;
@@ -17,11 +19,27 @@ const Container = styled(FormGroup)`
     margin-top: 20px;
   }
 `
-const onValueChange = (e) => {
-  console.log(e.target.name, e.target.value)
+const defaultValue = {
+  title: '',
+  description: '',
+  dueDate: '',
+  completionStatus: '',
 }
 
 const AddTask = () => {
+  const [task, setTask] = useState(defaultValue)
+
+  const onValueChange = (e) => {
+    e.preventDefault()
+    // console.log(e.target.name, e.target.value)
+    setTask({ ...task, [e.target.name]: e.target.value })
+    console.log(task)
+  }
+
+  const addTaskDetails = async () => {
+    await addTask()
+  }
+
   return (
     <Container>
       <Typography variant='h4'>Add Task</Typography>
@@ -35,8 +53,8 @@ const AddTask = () => {
       </FormControl>
       <FormControl variant='standard'>
         <Input
-          name='someDate'
-          label='Some Date'
+          name='dueDate'
+          label=' Date'
           InputLabelProps={{ shrink: true, required: true }}
           type='date'
           onChange={(e) => onValueChange(e)}
@@ -50,7 +68,9 @@ const AddTask = () => {
         </Select>
       </FormControl>
       <FormControl>
-        <Button variant='contained'>Add Task</Button>
+        <Button variant='contained' onClick={() => addTaskDetails()}>
+          Add Task
+        </Button>
       </FormControl>
     </Container>
   )
