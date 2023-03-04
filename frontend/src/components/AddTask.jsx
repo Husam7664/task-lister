@@ -37,7 +37,7 @@ const AddTask = () => {
   }
 
   const addTaskDetails = async () => {
-    await addTask()
+    await addTask(task)
   }
 
   return (
@@ -52,6 +52,7 @@ const AddTask = () => {
         <Input onChange={(e) => onValueChange(e)} name='description' />
       </FormControl>
       <FormControl variant='standard'>
+        <InputLabel>Due Date</InputLabel>
         <Input
           name='dueDate'
           label=' Date'

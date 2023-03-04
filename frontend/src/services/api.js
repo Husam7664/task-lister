@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = ''
+const URL = 'http://localhost:8000'
 export const addTask = async (data) => {
   try {
     return axios.post(`${URL}/add-task`, data)
