@@ -10,7 +10,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
-import { getTask } from '../services/api'
+import { addTask, getTask } from '../services/api'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Container = styled(FormGroup)`
@@ -35,11 +35,12 @@ const EditTask = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    loadUserDetails()
+    loadTaskDetails()
   }, [])
 
-  const loadUserDetails = async () => {
+  const loadTaskDetails = async () => {
     const response = await getTask(id)
+    setTask(response.data)
   }
 
   const onValueChange = (e) => {
@@ -54,22 +55,34 @@ const EditTask = () => {
     await navigate('/')
   }
 
+  const dateConverter = (date) => {
+    return date.split('T')[0]
+  }
   return (
     <Container>
       <Typography variant='h4'>Edit Task</Typography>
       <FormControl>
         <InputLabel>title</InputLabel>
-        <Input onChange={(e) => onValueChange(e)} name='title' />
+        <Input
+          onChange={(e) => onValueChange(e)}
+          name='title'
+          value={task.title}
+        />
       </FormControl>
       <FormControl>
         <InputLabel>description</InputLabel>
-        <Input onChange={(e) => onValueChange(e)} name='description' />
+        <Input
+          onChange={(e) => onValueChange(e)}
+          name='description'
+          value={task.description}
+        />
       </FormControl>
       <FormControl variant='standard'>
         <InputLabel>Due Date</InputLabel>
         <Input
           name='dueDate'
           label=' Date'
+          value={dateConverter(task.dueDate)}
           InputLabelProps={{ shrink: true, required: true }}
           type='date'
           onChange={(e) => onValueChange(e)}
@@ -77,7 +90,11 @@ const EditTask = () => {
       </FormControl>
       <FormControl variant='standard'>
         <InputLabel>completion status</InputLabel>
-        <Select onChange={(e) => onValueChange(e)} name='completionStatus'>
+        <Select
+          onChange={(e) => onValueChange(e)}
+          name='completionStatus'
+          value={task.completionStatus}
+        >
           <MenuItem value={true}>Yes</MenuItem>
           <MenuItem value={false}>No</MenuItem>
         </Select>

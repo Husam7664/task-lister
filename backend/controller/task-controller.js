@@ -17,7 +17,16 @@ export const addTask = async (request, response) => {
 export const getTasks = async (request, response) => {
   try {
     const tasks = await Task.find()
-    console.log(Task)
+    response.status(200).json(tasks)
+  } catch (error) {
+    response.status(400).json({ message: error.message })
+  }
+}
+export const getTask = async (request, response) => {
+  console.log('id', request.params.id)
+  try {
+    // const tasks = await Task.find({ _id: request.params.id })
+    const tasks = await Task.findById(request.params.id)
     response.status(200).json(tasks)
   } catch (error) {
     response.status(400).json({ message: error.message })

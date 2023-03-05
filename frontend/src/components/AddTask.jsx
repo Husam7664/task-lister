@@ -59,7 +59,7 @@ const AddTask = () => {
         <InputLabel>Due Date</InputLabel>
         <Input
           name='dueDate'
-          label=' Date'
+          label='Date'
           InputLabelProps={{ shrink: true, required: true }}
           type='date'
           onChange={(e) => onValueChange(e)}
