@@ -48,10 +48,10 @@ const AddTask = () => {
     <Container>
       <Typography variant='h4'>Add Task</Typography>
       <FormControl>
-        <InputLabel>title</InputLabel>
+        <InputLabel variant='standard'>title</InputLabel>
         <Input onChange={(e) => onValueChange(e)} name='title' />
       </FormControl>
-      <FormControl>
+      <FormControl variant='standard'>
         <InputLabel>description</InputLabel>
         <Input onChange={(e) => onValueChange(e)} name='description' />
       </FormControl>
