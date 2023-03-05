@@ -25,8 +25,16 @@ export const getTask = async (id) => {
 }
 export const editTask = async (task, id) => {
   try {
-    return await axios.post(`${URL}/${id}`, task)
+    return await axios.put(`${URL}/${id}`, task)
   } catch (error) {
-    console.log('Error while calling getTask api', error)
+    console.log('Error while calling editTask api', error)
+  }
+}
+
+export const deleteTask = async (id) => {
+  try {
+    return await axios.delete(`${URL}/${id}`)
+  } catch (error) {
+    console.log('Error while calling deleteTask api', error)
   }
 }

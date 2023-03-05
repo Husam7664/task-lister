@@ -9,7 +9,7 @@ import {
   styled,
   Button,
 } from '@mui/material'
-import { getTasks } from '../services/api'
+import { getTasks, deleteTask } from '../services/api'
 import { Link } from 'react-router-dom'
 
 const StyledTable = styled(Table)`
@@ -40,6 +40,12 @@ const AllTasks = () => {
     console.log(response)
     setTasks(response.data)
   }
+
+  const deleteTaskDetails = async (id) => {
+    await deleteTask(id)
+    geAtllTasks()
+  }
+
   const dateConverter = (date) => {
     return date.split('T')[0]
   }
@@ -79,7 +85,11 @@ const AllTasks = () => {
               >
                 Edit
               </Button>
-              <Button variant='contained' color='secondary'>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={() => deleteTaskDetails(task._id)}
+              >
                 Delete
               </Button>
             </TableCell>

@@ -39,6 +39,14 @@ export const editTask = async (request, response) => {
     await Task.updateOne({ _id: request.params.id }, editTask)
     response.status(201).json(editTask)
   } catch (error) {
-    response.status(400).json({ message: error.message })
+    response.status(409).json({ message: error.message })
+  }
+}
+export const deleteTask = async (request, response) => {
+  try {
+    await Task.deleteOne({ _id: request.params.id })
+    response.status(200).json({ message: 'Task deleted successfuly' })
+  } catch (error) {
+    response.status(409).json({ message: error.message })
   }
 }
