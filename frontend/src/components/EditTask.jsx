@@ -95,8 +95,8 @@ const EditTask = () => {
           name='completionStatus'
           value={task.completionStatus}
         >
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
+          <MenuItem value={true}>Completed</MenuItem>
+          <MenuItem value={false}>Incomplete</MenuItem>
         </Select>
       </FormControl>
       <FormControl>

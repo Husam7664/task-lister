@@ -78,6 +78,24 @@ const AllTasks = () => {
     console.log(filterCompltedTasks)
     setTasks(filterCompltedTasks)
   }
+
+  const todayDate = () => {
+    let today = new Date()
+    let dd = String(today.getDate()).padStart(2, '0')
+    let mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
+    let yyyy = today.getFullYear()
+
+    today = yyyy + '-' + mm + '-' + dd
+    // document.write(today);
+    return today
+  }
+  const filteroverdueTasks = () => {
+    const filterCompltedTasks = subTasks.filter(
+      (task) => todayDate() > task.dueDate
+    )
+    console.log(filterCompltedTasks)
+    setTasks(filterCompltedTasks)
+  }
   return (
     <Container>
       <Div>
@@ -88,7 +106,8 @@ const AllTasks = () => {
         >
           <Button onClick={() => allTasks()}>All</Button>
           <Button onClick={() => filterCompltedTasks()}>Completed</Button>
-          <Button onClick={() => filterInCompltedTasks()}>Not Completed</Button>
+          <Button onClick={() => filterInCompltedTasks()}>Incomplete</Button>
+          <Button onClick={() => filteroverdueTasks()}>Overdue</Button>
         </ButtonGroup>
       </Div>
 
@@ -96,11 +115,11 @@ const AllTasks = () => {
         <TableHead>
           <THead>
             <TableCell>Id</TableCell>
-            <TableCell align='right'>Title</TableCell>
-            <TableCell align='right'>Description</TableCell>
-            <TableCell align='right'>Completed</TableCell>
-            <TableCell align='right'>Due_date</TableCell>
-            <TableCell align='right'></TableCell>
+            <TableCell>Title</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell>Completion Status</TableCell>
+            <TableCell>Due Date</TableCell>
+            <TableCell></TableCell>
           </THead>
         </TableHead>
         <TableBody>
@@ -112,13 +131,13 @@ const AllTasks = () => {
               <TableCell component='th' scope='task'>
                 {index + 1}
               </TableCell>
-              <TableCell align='right'>{task.title}</TableCell>
-              <TableCell align='right'>{task.description}</TableCell>
-              <TableCell align='right'>
-                {task.completionStatus === true ? 'Completed' : 'Not Completed'}
+              <TableCell>{task.title}</TableCell>
+              <TableCell>{task.description}</TableCell>
+              <TableCell>
+                {task.completionStatus === true ? 'Completed' : 'Incomplete'}
               </TableCell>
-              <TableCell align='right'>{dateConverter(task.dueDate)}</TableCell>
-              <TableCell align='right'>
+              <TableCell>{dateConverter(task.dueDate)}</TableCell>
+              <TableCell>
                 <Button
                   variant='contained'
                   style={{ marginRight: 10 }}

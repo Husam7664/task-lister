@@ -68,8 +68,8 @@ const AddTask = () => {
       <FormControl variant='standard'>
         <InputLabel>completion status</InputLabel>
         <Select onChange={(e) => onValueChange(e)} name='completionStatus'>
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
+          <MenuItem value={true}>Completed</MenuItem>
+          <MenuItem value={false}>Incomplete</MenuItem>
         </Select>
       </FormControl>
       <FormControl>
