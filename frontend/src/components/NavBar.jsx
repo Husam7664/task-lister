@@ -8,7 +8,7 @@ const Header = styled(AppBar)`
 const Tabs = styled(NavLink)`
   font-size: 20px;
   margin-right: 20px;
-  color: inherit;
+  color: orange;
   text-decoration: none;
 `
 
@@ -16,6 +16,7 @@ const NavBar = () => {
   return (
     <Header position='static'>
       <Toolbar>
+        <h2 style={{ marginRight: 75 }}> Task Lister</h2>
         <Tabs to='/'>All Tasks</Tabs>
         <Tabs to='add-task'>Add Task</Tabs>
       </Toolbar>
