@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   FormControl,
   FormGroup,
@@ -10,8 +10,8 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
-import { addTask } from '../services/api'
-import { useNavigate } from 'react-router-dom'
+import { getTask } from '../services/api'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Container = styled(FormGroup)`
   width: 50%;
@@ -20,6 +20,7 @@ const Container = styled(FormGroup)`
     margin-top: 20px;
   }
 `
+
 const defaultValue = {
   title: '',
   description: '',
@@ -27,10 +28,19 @@ const defaultValue = {
   completionStatus: '',
 }
 
-const AddTask = () => {
+const EditTask = () => {
   const [task, setTask] = useState(defaultValue)
 
   const navigate = useNavigate()
+  const { id } = useParams()
+
+  useEffect(() => {
+    loadUserDetails()
+  }, [])
+
+  const loadUserDetails = async () => {
+    const response = await getTask(id)
+  }
 
   const onValueChange = (e) => {
     e.preventDefault()
@@ -39,14 +49,14 @@ const AddTask = () => {
     console.log(task)
   }
 
-  const addTaskDetails = async () => {
-    await addTask(task)
-    navigate('/')
+  const editTaskDetails = async () => {
+    // await editTask(task)
+    await navigate('/')
   }
 
   return (
     <Container>
-      <Typography variant='h4'>Add Task</Typography>
+      <Typography variant='h4'>Edit Task</Typography>
       <FormControl>
         <InputLabel>title</InputLabel>
         <Input onChange={(e) => onValueChange(e)} name='title' />
@@ -73,12 +83,12 @@ const AddTask = () => {
         </Select>
       </FormControl>
       <FormControl>
-        <Button variant='contained' onClick={() => addTaskDetails()}>
-          Add Task
+        <Button variant='contained' onClick={() => editTaskDetails()}>
+          Edit Task
         </Button>
       </FormControl>
     </Container>
   )
 }
 
-export default AddTask
+export default EditTask

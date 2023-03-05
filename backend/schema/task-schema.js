@@ -4,7 +4,7 @@ import autoIncrement from 'mongoose-auto-increment'
 const taskSchema = mongoose.Schema({
   title: String,
   description: String,
-  dueDate: String,
+  dueDate: Date,
   completionStatus: Boolean,
 })
 

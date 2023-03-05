@@ -1,7 +1,8 @@
 import mongoose from 'mongoose'
 
 const Connection = async (username, password) => {
-  const URL = `mongodb://${username}:${password}@ac-sckd5d6-shard-00-00.3bcbrsm.mongodb.net:27017,ac-sckd5d6-shard-00-01.3bcbrsm.mongodb.net:27017,ac-sckd5d6-shard-00-02.3bcbrsm.mongodb.net:27017/?ssl=true&replicaSet=atlas-mo3bkp-shard-0&authSource=admin&retryWrites=true&w=majority`
+  // const URL = `mongodb://${username}:${password}@ac-sckd5d6-shard-00-00.3bcbrsm.mongodb.net:27017,ac-sckd5d6-shard-00-01.3bcbrsm.mongodb.net:27017,ac-sckd5d6-shard-00-02.3bcbrsm.mongodb.net:27017/?ssl=true&replicaSet=atlas-mo3bkp-shard-0&authSource=admin&retryWrites=true&w=majority`
+  const URL = `mongodb://${username}:${password}@ac-aq7k5xw-shard-00-00.60ljs05.mongodb.net:27017,ac-aq7k5xw-shard-00-01.60ljs05.mongodb.net:27017,ac-aq7k5xw-shard-00-02.60ljs05.mongodb.net:27017/?ssl=true&replicaSet=atlas-befe6j-shard-0&authSource=admin&retryWrites=true&w=majority`
   try {
     await mongoose.connect(URL, {
       useUnifiedTopology: true,
