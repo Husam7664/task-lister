@@ -18,6 +18,10 @@ const StyledTable = styled(Table)`
   width: 80%;
   margin: 50px auto 0 auto;
 `
+const Div = styled('div')`
+  width: 80%;
+  margin: 50px auto 0 auto;
+`
 const THead = styled(TableRow)`
   background: #000000;
   & > th {
@@ -76,7 +80,7 @@ const AllTasks = () => {
   }
   return (
     <Container>
-      <div className='flex-row'>
+      <Div>
         <p>Filter Tasks</p>
         <ButtonGroup
           variant='contained'
@@ -86,7 +90,7 @@ const AllTasks = () => {
           <Button onClick={() => filterCompltedTasks()}>Completed</Button>
           <Button onClick={() => filterInCompltedTasks()}>Not Completed</Button>
         </ButtonGroup>
-      </div>
+      </Div>
 
       <StyledTable>
         <TableHead>
