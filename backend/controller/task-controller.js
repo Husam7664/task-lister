@@ -32,3 +32,13 @@ export const getTask = async (request, response) => {
     response.status(400).json({ message: error.message })
   }
 }
+export const editTask = async (request, response) => {
+  let task = request.body
+  const editTask = new Task(task)
+  try {
+    await Task.updateOne({ _id: request.params.id }, editTask)
+    response.status(201).json(editTask)
+  } catch (error) {
+    response.status(400).json({ message: error.message })
+  }
+}

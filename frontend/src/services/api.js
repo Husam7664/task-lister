@@ -23,3 +23,10 @@ export const getTask = async (id) => {
     console.log('Error while calling getTask api', error)
   }
 }
+export const editTask = async (task, id) => {
+  try {
+    return await axios.post(`${URL}/${id}`, task)
+  } catch (error) {
+    console.log('Error while calling getTask api', error)
+  }
+}

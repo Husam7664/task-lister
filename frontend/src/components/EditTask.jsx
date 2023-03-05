@@ -10,7 +10,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
-import { addTask, getTask } from '../services/api'
+import { editTask, getTask } from '../services/api'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Container = styled(FormGroup)`
@@ -51,7 +51,7 @@ const EditTask = () => {
   }
 
   const editTaskDetails = async () => {
-    // await editTask(task)
+    await editTask(task, id)
     await navigate('/')
   }
 
